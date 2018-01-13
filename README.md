@@ -1,6 +1,6 @@
 # Training
 
-#Packages
+##Packages
 
 #live-server
 npm install -g live-server
@@ -25,3 +25,11 @@ babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
 # Visual Studio Code extentions
 Babel ES6/ES7
 Path Intellisense
+
+
+# Global NPM package commands
+npm install -g live-server
+
+
+# Mac
+ctrl + c for at stoppe terminal job
