@@ -1,25 +1,24 @@
 'use strict';
 
-// const square = function (x){
-//     return x * x;
-// };
-
-// console.log(square(3));
-
-
-// // const squareArrow = (x) => {
-// //     return x * x;
-// // };
-
-// const squareArrow = (x) => x * x;
-
-// console.log(squareArrow(4));
-
-// const getFirstName = (fullName) => { 
-//     return fullName.split(' ')[0];
-// }
-
-var getFirstName = function getFirstName(fullName) {
-   return fullName.split(' ')[0];
+var add = function add(a, b) {
+    return a + b;
 };
-console.log(getFirstName('Jeppe Hansen'));
+
+console.log(add(1, 2));
+
+var user = {
+    name: 'Jeppe',
+    cities: ['Tølløse', 'Holbæk', 'København'],
+    printPlacesLived: function printPlacesLived() {
+        console.log(this.name);
+        console.log(this.cities);
+
+        var that = this;
+
+        this.cities.forEach(function (city) {
+            console.log(that.name + ' har boet i ' + city);
+        });
+    }
+};
+
+console.log(user.printPlacesLived());
