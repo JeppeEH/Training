@@ -2,7 +2,8 @@
 
 #Packages
 
-#live-server public
+#live-server
+npm install -g live-server
 Starter live server på folderen public
 
 #yarn install
