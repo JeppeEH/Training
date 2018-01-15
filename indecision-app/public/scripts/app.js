@@ -1,50 +1,83 @@
 'use strict';
 
-var add = function add(a, b) {
-    return a + b;
+console.log('app.js is running!');
+
+var appObject = {
+    title: 'Indecisition App',
+    subtitle: 'This is my subtitle',
+    options: ['One', 'Two']
 };
 
-console.log(add(1, 2));
-
-// const user = {
-//     name: 'Jeppe',
-//     cities: ['Tølløse', 'Holbæk', 'København'],
-//     printPlacesLived: function (){
-//        console.log(this.name);
-//        console.log(this.cities);
-
-//         const that = this;
-
-//        this.cities.forEach(function (city){
-//         console.log(that.name + ' har boet i ' + city);
-//        })
-//     }
-// }
-
+// JSX - JavaScript XML
+var template = React.createElement(
+    'div',
+    null,
+    React.createElement(
+        'h1',
+        null,
+        appObject.title
+    ),
+    appObject.subtitle && React.createElement(
+        'p',
+        null,
+        appObject.subtitle
+    ),
+    React.createElement(
+        'p',
+        null,
+        appObject.options.length > 0 ? 'Here are your options' : 'No options'
+    ),
+    React.createElement(
+        'ol',
+        null,
+        React.createElement(
+            'li',
+            null,
+            'item one'
+        ),
+        React.createElement(
+            'li',
+            null,
+            'item two'
+        )
+    )
+);
 
 var user = {
     name: 'Jeppe',
-    cities: ['Tølløse', 'Holbæk', 'København'],
-    printPlacesLived: function printPlacesLived() {
-        var _this = this;
-
-        return this.cities.map(function (city) {
-            return _this.name + ' has lived in ' + city;
-        });
-    }
-};
-console.log(user.printPlacesLived());
-
-var multiplier = {
-    numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    multiplyBy: 2,
-    multiple: function multiple() {
-        var _this2 = this;
-
-        return this.numbers.map(function (number) {
-            return number * _this2.multiplyBy;
-        });
-    }
+    age: 18,
+    location: 'København'
 };
 
-console.log(multiplier.multiple());
+function getLocation(location) {
+    if (location) {
+        return React.createElement(
+            'p',
+            null,
+            'Location: ',
+            location
+        );
+    }
+}
+
+var templateTwo = React.createElement(
+    'div',
+    null,
+    React.createElement(
+        'h1',
+        null,
+        user.name ? user.name : 'Ingen'
+    ),
+    user.age && user.age >= 18 && React.createElement(
+        'p',
+        null,
+        'Age: ',
+        user.age
+    ),
+    getLocation(user.location)
+);
+
+var appRoot = document.getElementById('app');
+
+// ReactDOM.render(templateTwo, appRoot);
+ReactDOM.render(template, appRoot);
