@@ -3,10 +3,10 @@ console.log('app.js is running!');
 const app = {
     title: 'Indecisition App',
     subtitle: 'This is my subtitle',
-    options: ['One','Two'] 
+    options: ['one','two'] 
 };
 
-const onFormSubmit =(e) => {
+const onFormSubmit = (e) => {
     e.preventDefault();
 
     const option = e.target.elements.option.value;
@@ -14,27 +14,48 @@ const onFormSubmit =(e) => {
     if (option) {
         app.options.push(option);
         e.target.elements.option.value = '';
+        render();
     }
 };
 
-// JSX - JavaScript XML
-const template = (
-    <div>
-        <h1>{app.title}</h1>
-       {app.subtitle && <p>{app.subtitle}</p>}
-       <p>{app.options.length > 0 ? 'Here are your options' : 'No options'}</p>
-        <ol>
-            <li>item one</li>
-            <li>item two</li>
-        </ol>
+const onRemoveAll = () => {
+  app.options = [];  
+  render();
+};
 
-        <form onSubmit={onFormSubmit}>
-            <input type="text" name="option" />
-            <button>Add Option</button>
-        </form>
-    </div>
-);
+const arr = ['Jeppe','Engell','Hansen'];
+const numbers = [55, 101, 1000];
 
 const appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot);
+const render = () => {
+    // JSX - JavaScript XML
+    const template = (
+        <div>
+            <h1>{app.title}</h1>
+            {app.subtitle && <p>{app.subtitle}</p>}
+            <p>{app.options.length > 0 ? 'Here are your options' : 'No options'}</p>
+            <p>App array length: {app.options.length}</p>
+            <button onClick={onRemoveAll}>Remove All</button>
+            <form onSubmit={onFormSubmit}>
+                <input type="text" name="option" />
+                <button>Add Option</button>
+            </form>
+
+            {/* comment */}
+            {
+                numbers.map((number, i) => <p key={i}>number: {number}</p>)
+            }
+            <ol>
+                {app.options.map((option) => {
+                    return <li key={option}>{option}</li>;
+                })}
+            </ol>
+        </div>
+    );
+
+
+    ReactDOM.render(template, appRoot);
+};
+
+render();
