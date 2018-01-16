@@ -1,47 +1,40 @@
 console.log('app.js is running!');
 
-const appObject = {
+const app = {
     title: 'Indecisition App',
     subtitle: 'This is my subtitle',
     options: ['One','Two'] 
 };
 
+const onFormSubmit =(e) => {
+    e.preventDefault();
+
+    const option = e.target.elements.option.value;
+
+    if (option) {
+        app.options.push(option);
+        e.target.elements.option.value = '';
+    }
+};
+
 // JSX - JavaScript XML
 const template = (
     <div>
-        <h1>{appObject.title}</h1>
-       {appObject.subtitle && <p>{appObject.subtitle}</p>}
-       <p>{appObject.options.length > 0 ? 'Here are your options' : 'No options'}</p>
+        <h1>{app.title}</h1>
+       {app.subtitle && <p>{app.subtitle}</p>}
+       <p>{app.options.length > 0 ? 'Here are your options' : 'No options'}</p>
         <ol>
             <li>item one</li>
             <li>item two</li>
         </ol>
+
+        <form onSubmit={onFormSubmit}>
+            <input type="text" name="option" />
+            <button>Add Option</button>
+        </form>
     </div>
 );
-
-const addOne = () => {
-    console.log('AddOne()')
-};
-
-const minusOne = () => { console.log('MinusOne');};
-
-const setupReset = () => {
-    console.log('reset');
-};
-
-let count = 0;
-const templateTwo = (
-    <div>
-        <h1>Count: {count}</h1>
-        <button onClick={addOne}>+1</button>
-
-        <button onClick={minusOne}>-1</button>
-        <button onClick={setupReset}>Reset</button>
-    </div>
-);
-console.log(templateTwo);
 
 const appRoot = document.getElementById('app');
 
-// ReactDOM.render(templateTwo, appRoot);
-ReactDOM.render(templateTwo, appRoot);
+ReactDOM.render(template, appRoot);

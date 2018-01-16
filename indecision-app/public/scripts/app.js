@@ -2,10 +2,21 @@
 
 console.log('app.js is running!');
 
-var appObject = {
+var app = {
     title: 'Indecisition App',
     subtitle: 'This is my subtitle',
     options: ['One', 'Two']
+};
+
+var onFormSubmit = function onFormSubmit(e) {
+    e.preventDefault();
+
+    var option = e.target.elements.option.value;
+
+    if (option) {
+        app.options.push(option);
+        e.target.elements.option.value = '';
+    }
 };
 
 // JSX - JavaScript XML
@@ -15,17 +26,17 @@ var template = React.createElement(
     React.createElement(
         'h1',
         null,
-        appObject.title
+        app.title
     ),
-    appObject.subtitle && React.createElement(
+    app.subtitle && React.createElement(
         'p',
         null,
-        appObject.subtitle
+        app.subtitle
     ),
     React.createElement(
         'p',
         null,
-        appObject.options.length > 0 ? 'Here are your options' : 'No options'
+        app.options.length > 0 ? 'Here are your options' : 'No options'
     ),
     React.createElement(
         'ol',
@@ -40,50 +51,19 @@ var template = React.createElement(
             null,
             'item two'
         )
+    ),
+    React.createElement(
+        'form',
+        { onSubmit: onFormSubmit },
+        React.createElement('input', { type: 'text', name: 'option' }),
+        React.createElement(
+            'button',
+            null,
+            'Add Option'
+        )
     )
 );
-
-var addOne = function addOne() {
-    console.log('AddOne()');
-};
-
-var minusOne = function minusOne() {
-    console.log('MinusOne');
-};
-
-var setupReset = function setupReset() {
-    console.log('reset');
-};
-
-var count = 0;
-var templateTwo = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        'Count: ',
-        count
-    ),
-    React.createElement(
-        'button',
-        { onClick: addOne },
-        '+1'
-    ),
-    React.createElement(
-        'button',
-        { onClick: minusOne },
-        '-1'
-    ),
-    React.createElement(
-        'button',
-        { onClick: setupReset },
-        'Reset'
-    )
-);
-console.log(templateTwo);
 
 var appRoot = document.getElementById('app');
 
-// ReactDOM.render(templateTwo, appRoot);
-ReactDOM.render(templateTwo, appRoot);
+ReactDOM.render(template, appRoot);
