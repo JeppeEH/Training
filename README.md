@@ -32,3 +32,8 @@ npm install -g live-server
 
 # Mac
 ctrl + c for at stoppe terminal job
+
+
+# React DOM elements
+https://reactjs.org/docs/dom-elements.html
+
