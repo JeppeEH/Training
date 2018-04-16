@@ -3,8 +3,11 @@
 ##Packages
 
 #live-server
+Tilgå Public folderen og kør "live-server": Starter live server på folderen public
+
+yarn add live-server 
 npm install -g live-server
-Starter live server på folderen public
+
 
 #yarn install
 henter alle pakker i package.json
