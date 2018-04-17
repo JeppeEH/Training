@@ -12,7 +12,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "babel-watch": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
+    "babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
     "live": "live-server public"
   },
   "keywords": [],
