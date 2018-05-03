@@ -1,5 +1,10 @@
 # Training
 
+
+# NPM RUN
+From {RootFolder} "npm run babel"
+
+
 ##Packages
 
 #live-server
